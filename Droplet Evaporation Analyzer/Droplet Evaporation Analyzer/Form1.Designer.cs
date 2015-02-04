@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,22 +62,33 @@
             this.label_Error = new System.Windows.Forms.Label();
             this.textBox_number_of_data_points = new System.Windows.Forms.TextBox();
             this.label_number_of_data_points = new System.Windows.Forms.Label();
+            this.label_d_p_end = new System.Windows.Forms.Label();
+            this.textBox_d_p_end = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label_T_d_end = new System.Windows.Forms.Label();
+            this.textBox_T_d_end = new System.Windows.Forms.TextBox();
+            this.label_p_inf_end = new System.Windows.Forms.Label();
+            this.textBox_p_inf_end = new System.Windows.Forms.TextBox();
+            this.label_T_inf_end = new System.Windows.Forms.Label();
+            this.textBox_T_inf_end = new System.Windows.Forms.TextBox();
+            this.label_evap_end = new System.Windows.Forms.Label();
+            this.textBox_evap_end = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(13, 265);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
+            this.chart1.Location = new System.Drawing.Point(457, 326);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(300, 300);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -90,7 +101,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(663, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(769, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -143,6 +154,7 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // materialConstantsToolStripMenuItem
             // 
@@ -313,7 +325,7 @@
             // 
             // textBox_number_of_data_points
             // 
-            this.textBox_number_of_data_points.Location = new System.Drawing.Point(13, 218);
+            this.textBox_number_of_data_points.Location = new System.Drawing.Point(12, 385);
             this.textBox_number_of_data_points.Name = "textBox_number_of_data_points";
             this.textBox_number_of_data_points.Size = new System.Drawing.Size(100, 20);
             this.textBox_number_of_data_points.TabIndex = 20;
@@ -321,17 +333,118 @@
             // label_number_of_data_points
             // 
             this.label_number_of_data_points.AutoSize = true;
-            this.label_number_of_data_points.Location = new System.Drawing.Point(13, 202);
+            this.label_number_of_data_points.Location = new System.Drawing.Point(12, 369);
             this.label_number_of_data_points.Name = "label_number_of_data_points";
             this.label_number_of_data_points.Size = new System.Drawing.Size(111, 13);
             this.label_number_of_data_points.TabIndex = 21;
             this.label_number_of_data_points.Text = "Number of data points";
             // 
+            // label_d_p_end
+            // 
+            this.label_d_p_end.AutoSize = true;
+            this.label_d_p_end.Location = new System.Drawing.Point(13, 234);
+            this.label_d_p_end.Name = "label_d_p_end";
+            this.label_d_p_end.Size = new System.Drawing.Size(84, 13);
+            this.label_d_p_end.TabIndex = 23;
+            this.label_d_p_end.Text = "Droplet diameter";
+            // 
+            // textBox_d_p_end
+            // 
+            this.textBox_d_p_end.Location = new System.Drawing.Point(13, 250);
+            this.textBox_d_p_end.Name = "textBox_d_p_end";
+            this.textBox_d_p_end.Size = new System.Drawing.Size(100, 20);
+            this.textBox_d_p_end.TabIndex = 22;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(13, 203);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 20);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Result";
+            // 
+            // label_T_d_end
+            // 
+            this.label_T_d_end.AutoSize = true;
+            this.label_T_d_end.Location = new System.Drawing.Point(141, 234);
+            this.label_T_d_end.Name = "label_T_d_end";
+            this.label_T_d_end.Size = new System.Drawing.Size(100, 13);
+            this.label_T_d_end.TabIndex = 26;
+            this.label_T_d_end.Text = "Droplet temperature";
+            // 
+            // textBox_T_d_end
+            // 
+            this.textBox_T_d_end.Location = new System.Drawing.Point(141, 250);
+            this.textBox_T_d_end.Name = "textBox_T_d_end";
+            this.textBox_T_d_end.Size = new System.Drawing.Size(100, 20);
+            this.textBox_T_d_end.TabIndex = 25;
+            // 
+            // label_p_inf_end
+            // 
+            this.label_p_inf_end.AutoSize = true;
+            this.label_p_inf_end.Location = new System.Drawing.Point(13, 273);
+            this.label_p_inf_end.Name = "label_p_inf_end";
+            this.label_p_inf_end.Size = new System.Drawing.Size(120, 13);
+            this.label_p_inf_end.TabIndex = 28;
+            this.label_p_inf_end.Text = "Partial pressure of water";
+            // 
+            // textBox_p_inf_end
+            // 
+            this.textBox_p_inf_end.Location = new System.Drawing.Point(13, 289);
+            this.textBox_p_inf_end.Name = "textBox_p_inf_end";
+            this.textBox_p_inf_end.Size = new System.Drawing.Size(100, 20);
+            this.textBox_p_inf_end.TabIndex = 27;
+            // 
+            // label_T_inf_end
+            // 
+            this.label_T_inf_end.AutoSize = true;
+            this.label_T_inf_end.Location = new System.Drawing.Point(141, 273);
+            this.label_T_inf_end.Name = "label_T_inf_end";
+            this.label_T_inf_end.Size = new System.Drawing.Size(78, 13);
+            this.label_T_inf_end.TabIndex = 30;
+            this.label_T_inf_end.Text = "Air temperature";
+            // 
+            // textBox_T_inf_end
+            // 
+            this.textBox_T_inf_end.Location = new System.Drawing.Point(141, 289);
+            this.textBox_T_inf_end.Name = "textBox_T_inf_end";
+            this.textBox_T_inf_end.Size = new System.Drawing.Size(100, 20);
+            this.textBox_T_inf_end.TabIndex = 29;
+            // 
+            // label_evap_end
+            // 
+            this.label_evap_end.AutoSize = true;
+            this.label_evap_end.Location = new System.Drawing.Point(12, 320);
+            this.label_evap_end.Name = "label_evap_end";
+            this.label_evap_end.Size = new System.Drawing.Size(160, 13);
+            this.label_evap_end.TabIndex = 32;
+            this.label_evap_end.Text = "Percentage of water evaporated";
+            // 
+            // textBox_evap_end
+            // 
+            this.textBox_evap_end.Location = new System.Drawing.Point(12, 336);
+            this.textBox_evap_end.Name = "textBox_evap_end";
+            this.textBox_evap_end.Size = new System.Drawing.Size(100, 20);
+            this.textBox_evap_end.TabIndex = 31;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(663, 784);
+            this.ClientSize = new System.Drawing.Size(769, 784);
+            this.Controls.Add(this.label_evap_end);
+            this.Controls.Add(this.textBox_evap_end);
+            this.Controls.Add(this.label_T_inf_end);
+            this.Controls.Add(this.textBox_T_inf_end);
+            this.Controls.Add(this.label_p_inf_end);
+            this.Controls.Add(this.textBox_p_inf_end);
+            this.Controls.Add(this.label_T_d_end);
+            this.Controls.Add(this.textBox_T_d_end);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label_d_p_end);
+            this.Controls.Add(this.textBox_d_p_end);
             this.Controls.Add(this.label_number_of_data_points);
             this.Controls.Add(this.textBox_number_of_data_points);
             this.Controls.Add(this.label_Error);
@@ -398,6 +511,17 @@
         private System.Windows.Forms.Label label_Error;
         private System.Windows.Forms.TextBox textBox_number_of_data_points;
         private System.Windows.Forms.Label label_number_of_data_points;
+        private System.Windows.Forms.Label label_d_p_end;
+        private System.Windows.Forms.TextBox textBox_d_p_end;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label_T_d_end;
+        private System.Windows.Forms.TextBox textBox_T_d_end;
+        private System.Windows.Forms.Label label_p_inf_end;
+        private System.Windows.Forms.TextBox textBox_p_inf_end;
+        private System.Windows.Forms.Label label_T_inf_end;
+        private System.Windows.Forms.TextBox textBox_T_inf_end;
+        private System.Windows.Forms.Label label_evap_end;
+        private System.Windows.Forms.TextBox textBox_evap_end;
     }
 }
 

@@ -170,26 +170,37 @@ namespace Droplet_Evaporation_Analyzer
                                     * Math.Pow((d_p_i * Math.Pow(10, 6)) / 2, 3)) * 100);
 
 
-            // Data check with two decimal points
+            // Data with two decimal points
             double d_p_end = Math.Truncate(d_pValues[solLength - 1] * Math.Pow(10, 8)) / 100;
             double t_d_end = Math.Truncate(t_dValues[solLength - 1] * 100) / 100;
             double T_inf_end = Math.Truncate(T_infValues[solLength - 1] * 100) / 100;
             double p_inf_end = Math.Truncate(p_infValues[solLength - 1] * 100) / 100;
             double evap_end = Math.Truncate(evaporation * 100) / 100;
 
-
+            // Printing end result
             string d_p_end_str = d_p_end.ToString();
             string t_d_end_str = t_d_end.ToString();
             string T_inf_end_str = T_inf_end.ToString();
             string p_inf_end_str = p_inf_end.ToString();
             string evap_end_str = evap_end.ToString();
 
+            this.textBox_d_p_end.Text = "";
+            this.textBox_d_p_end.Text = d_p_end_str;
+            this.textBox_T_d_end.Text = "";
+            this.textBox_T_d_end.Text = t_d_end_str;
+            this.textBox_T_inf_end.Text = "";
+            this.textBox_T_inf_end.Text = T_inf_end_str;
+            this.textBox_p_inf_end.Text = "";
+            this.textBox_p_inf_end.Text = p_inf_end_str;
+            this.textBox_evap_end.Text = "";
+            this.textBox_evap_end.Text = evap_end_str;
+
         }
 
         
         
         
-        // Defining the Droplet evaporation equations
+        /***************Defining the Droplet evaporation equations******************/
 
         public double[] Equation(double T, double[] Y)
         {
@@ -200,6 +211,7 @@ namespace Droplet_Evaporation_Analyzer
 
 
             /************Constants******************************/
+           
             double M_w = 18.015;        //The molar mass of water [kg/kmol]
             double R_u = 8314;          //The universal gas constant [J/(kmol*K)]:
             double sigma_w = 0.072;     //Surface tention of water [N/m]:
@@ -213,6 +225,7 @@ namespace Droplet_Evaporation_Analyzer
             double M_a = 28.97;         // The molar mass of dry air [kg/kmol]
             double Z = 1;               // Corpresibility factor for air at 1 atm
             double C_p_wv = 1.864;      // Specific heat capacity of water vapour (300 K) [kJ/(kg*K]:
+
 
             /************Variables******************************/
 
@@ -306,6 +319,13 @@ namespace Droplet_Evaporation_Analyzer
 
             return ydot;
 
+        }
+
+        /****************Exit botton*****************/
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
