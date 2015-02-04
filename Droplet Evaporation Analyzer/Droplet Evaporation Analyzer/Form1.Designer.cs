@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,16 +79,16 @@
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            chartArea11.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea11);
+            legend11.Name = "Legend1";
+            this.chart1.Legends.Add(legend11);
             this.chart1.Location = new System.Drawing.Point(457, 326);
             this.chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart1.Series.Add(series3);
+            series11.ChartArea = "ChartArea1";
+            series11.Legend = "Legend1";
+            series11.Name = "Series1";
+            this.chart1.Series.Add(series11);
             this.chart1.Size = new System.Drawing.Size(300, 300);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -184,6 +184,7 @@
             this.textBox_d_p_i.Size = new System.Drawing.Size(100, 20);
             this.textBox_d_p_i.TabIndex = 3;
             this.textBox_d_p_i.Text = "100";
+            this.textBox_d_p_i.MouseHover += new System.EventHandler(this.textBox_d_p_i_MouseHover);
             // 
             // textBox_T_d_i
             // 
@@ -192,6 +193,7 @@
             this.textBox_T_d_i.Size = new System.Drawing.Size(100, 20);
             this.textBox_T_d_i.TabIndex = 5;
             this.textBox_T_d_i.Text = "293.15";
+            this.textBox_T_d_i.MouseHover += new System.EventHandler(this.textBox_T_d_i_MouseHover);
             // 
             // label_T_d_i
             // 
@@ -209,6 +211,7 @@
             this.textBox_V_w.Size = new System.Drawing.Size(100, 20);
             this.textBox_V_w.TabIndex = 7;
             this.textBox_V_w.Text = "0.75";
+            this.textBox_V_w.MouseHover += new System.EventHandler(this.textBox_V_w_MouseHover);
             // 
             // label_V_w
             // 
@@ -226,6 +229,7 @@
             this.textBox_phi_inf_i.Size = new System.Drawing.Size(100, 20);
             this.textBox_phi_inf_i.TabIndex = 9;
             this.textBox_phi_inf_i.Text = "40";
+            this.textBox_phi_inf_i.MouseHover += new System.EventHandler(this.textBox_phi_inf_i_MouseHover);
             // 
             // label_phi_inf_i
             // 
@@ -243,6 +247,7 @@
             this.textBox_T_inf_i.Size = new System.Drawing.Size(100, 20);
             this.textBox_T_inf_i.TabIndex = 11;
             this.textBox_T_inf_i.Text = "303.15";
+            this.textBox_T_inf_i.MouseHover += new System.EventHandler(this.textBox_T_inf_i_MouseHover);
             // 
             // label_T_inf_i
             // 
@@ -260,6 +265,7 @@
             this.textBox_V_a.Size = new System.Drawing.Size(100, 20);
             this.textBox_V_a.TabIndex = 13;
             this.textBox_V_a.Text = "40";
+            this.textBox_V_a.MouseHover += new System.EventHandler(this.textBox_V_a_MouseHover);
             // 
             // label_V_a
             // 
@@ -277,6 +283,7 @@
             this.textBox_delta_t.Size = new System.Drawing.Size(100, 20);
             this.textBox_delta_t.TabIndex = 15;
             this.textBox_delta_t.Text = "0.001";
+            this.textBox_delta_t.MouseHover += new System.EventHandler(this.textBox_delta_t_MouseHover);
             // 
             // label_delta_t
             // 
@@ -294,6 +301,7 @@
             this.textBox_tf.Size = new System.Drawing.Size(100, 20);
             this.textBox_tf.TabIndex = 17;
             this.textBox_tf.Text = "1";
+            this.textBox_tf.MouseHover += new System.EventHandler(this.textBox_tf_MouseHover);
             // 
             // label_tf
             // 

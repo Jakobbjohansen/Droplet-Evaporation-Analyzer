@@ -327,5 +327,67 @@ namespace Droplet_Evaporation_Analyzer
         {
             this.Close();
         }
+
+        private void textBox_d_p_i_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip Tooltip1 = new System.Windows.Forms.ToolTip();
+
+            Tooltip1.SetToolTip(this.textBox_d_p_i, "Droplet diameter in μ meters");
+        }
+
+        private void textBox_T_d_i_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip Tooltip2 = new System.Windows.Forms.ToolTip();
+
+            Tooltip2.SetToolTip(this.textBox_T_d_i, "Water temperature in Kelvin");
+        }
+
+        private void textBox_V_w_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip Tooltip3 = new System.Windows.Forms.ToolTip();
+
+            Tooltip3.SetToolTip(this.textBox_V_w, "Water in cm\xB3/grams");
+        }
+
+        private void textBox_phi_inf_i_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip Tooltip4 = new System.Windows.Forms.ToolTip();
+
+            Tooltip4.SetToolTip(this.textBox_phi_inf_i, "Relative humidity of air volume");
+        }
+
+        private void textBox_T_inf_i_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip Tooltip5 = new System.Windows.Forms.ToolTip();
+
+            Tooltip5.SetToolTip(this.textBox_T_inf_i, "Air temperature in Kelvin");
+        }
+
+        private void textBox_V_a_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip Tooltip6 = new System.Windows.Forms.ToolTip();
+
+            Tooltip6.SetToolTip(this.textBox_V_a, "Air volume in liters");
+        }
+
+        private void textBox_delta_t_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip Tooltip7 = new System.Windows.Forms.ToolTip();
+
+            Tooltip7.SetToolTip(this.textBox_delta_t, "Time step in seconds");
+        }
+
+        private void textBox_tf_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip Tooltip8 = new System.Windows.Forms.ToolTip();
+
+            Tooltip8.SetToolTip(this.textBox_tf, "Total timespan evaluated in seconds");
+        }
+
+
+
+
+
+
     }
 }
