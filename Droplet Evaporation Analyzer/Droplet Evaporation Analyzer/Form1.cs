@@ -1,17 +1,17 @@
 ﻿/*  GNU General Public License
   
-    Droplet evaporation analyzer is free software: you can redistribute it and/or modify
+    Droplet Evaporation Analyzer is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    Droplet evaporation analyzer is distributed in the hope that it will be useful,
+    Droplet Evaporation Analyzer is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Droplet evaporation analyzer.  If not, see <http://www.gnu.org/licenses/>.
+    along with Droplet Evaporation Analyzer.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /*  Author:
@@ -20,7 +20,7 @@
     jajoh@byg.dtu.dk
  
     Copyright (c) 2015 Jakob Berg Johansen 
-    under GNU GPL license
+    Released under GNU GPL v3
 */
 
 using System;
@@ -516,6 +516,12 @@ namespace Droplet_Evaporation_Analyzer
             System.Windows.Forms.ToolTip Tooltip8 = new System.Windows.Forms.ToolTip();
 
             Tooltip8.SetToolTip(this.textBox_tf, "Total timespan evaluated in seconds");
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
         }
 
         
