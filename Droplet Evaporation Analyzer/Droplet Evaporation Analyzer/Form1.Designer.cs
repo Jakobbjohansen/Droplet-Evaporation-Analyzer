@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.chart_all = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,25 +78,44 @@
             this.label_evap_end = new System.Windows.Forms.Label();
             this.textBox_evap_end = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.comboBox_chart = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_all)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // chart1
+            // chart_all
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(457, 326);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(300, 300);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            chartArea5.Name = "ChartArea1";
+            chartArea6.Name = "ChartArea2";
+            this.chart_all.ChartAreas.Add(chartArea5);
+            this.chart_all.ChartAreas.Add(chartArea6);
+            legend3.Name = "Legend1";
+            this.chart_all.Legends.Add(legend3);
+            this.chart_all.Location = new System.Drawing.Point(343, 266);
+            this.chart_all.Name = "chart_all";
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series9.Legend = "Legend1";
+            series9.Name = "Droplet diameter";
+            series10.ChartArea = "ChartArea2";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series10.Legend = "Legend1";
+            series10.Name = "Droplet temperature";
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series11.Legend = "Legend1";
+            series11.Name = "Air temperature";
+            series12.ChartArea = "ChartArea2";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series12.Legend = "Legend1";
+            series12.Name = "Partial pressure of water";
+            this.chart_all.Series.Add(series9);
+            this.chart_all.Series.Add(series10);
+            this.chart_all.Series.Add(series11);
+            this.chart_all.Series.Add(series12);
+            this.chart_all.Size = new System.Drawing.Size(491, 448);
+            this.chart_all.TabIndex = 0;
+            this.chart_all.Text = "chart1";
             // 
             // menuStrip1
             // 
@@ -102,7 +125,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(769, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(845, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -448,11 +471,25 @@
             this.label2.TabIndex = 33;
             this.label2.Text = "Initiate";
             // 
+            // comboBox_chart
+            // 
+            this.comboBox_chart.FormattingEnabled = true;
+            this.comboBox_chart.Items.AddRange(new object[] {
+            "Droplet diameter and droplet temperature",
+            "Air temperature and partial pressure of water"});
+            this.comboBox_chart.Location = new System.Drawing.Point(343, 239);
+            this.comboBox_chart.Name = "comboBox_chart";
+            this.comboBox_chart.Size = new System.Drawing.Size(245, 21);
+            this.comboBox_chart.TabIndex = 34;
+            this.comboBox_chart.Text = "Droplet diameter and droplet temperature";
+            this.comboBox_chart.SelectedIndexChanged += new System.EventHandler(this.comboBox_chart_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(769, 784);
+            this.ClientSize = new System.Drawing.Size(845, 784);
+            this.Controls.Add(this.comboBox_chart);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label_evap_end);
             this.Controls.Add(this.textBox_evap_end);
@@ -485,12 +522,12 @@
             this.Controls.Add(this.label_T_d_i);
             this.Controls.Add(this.textBox_d_p_i);
             this.Controls.Add(this.label_d_p_i);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.chart_all);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Droplet Evaporation Analyzer";
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_all)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -500,7 +537,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_all;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
@@ -543,6 +580,7 @@
         private System.Windows.Forms.Label label_evap_end;
         private System.Windows.Forms.TextBox textBox_evap_end;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox_chart;
     }
 }
 

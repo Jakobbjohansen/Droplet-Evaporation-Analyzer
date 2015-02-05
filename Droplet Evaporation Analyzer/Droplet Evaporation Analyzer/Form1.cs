@@ -195,8 +195,142 @@ namespace Droplet_Evaporation_Analyzer
             this.textBox_evap_end.Text = "";
             this.textBox_evap_end.Text = evap_end_str;
 
-        }
+            //Converting datapoints to input units
 
+            d_pValues_mum = new double[solLength];
+            multi = 1000000;
+
+
+            for (int i = 0; i < solLength; i++)
+            {
+
+                d_pValues_mum[i] = d_pValues[i] * multi;
+            }
+
+            // Clearing charts
+            foreach (var series in chart_all.Series)
+            {
+                series.Points.Clear();
+            }
+
+
+            // Populating chart with datapoints 
+            for (int i = 0; i < solLength; i++)
+            {
+
+                chart_all.Series["Droplet diameter"].Points.AddXY(tValues[i], d_pValues_mum[i]);
+                chart_all.Series["Droplet temperature"].Points.AddXY(tValues[i], t_dValues[i]);
+            }
+
+            // Setting Y-axis values on upper chart
+            chart_all.ChartAreas[0].AxisY.Maximum = d_pValues_mum[0] + (d_pValues_mum[0] / 10);
+            chart_all.ChartAreas[0].AxisY.Minimum = d_pValues_mum[solLength - 1] - (d_pValues_mum[solLength - 1] / 10);
+
+            // Setting Y-axis values on lower chart
+            chart_all.ChartAreas[1].AxisY.Maximum = T_inf_i + (T_inf_i / 100);
+            chart_all.ChartAreas[1].AxisY.Minimum = t_dValues[solLength - 1] - (t_dValues[solLength - 1] / 100);
+
+            // Setting axis decimals and lable on upper chart
+            chart_all.ChartAreas[0].AxisX.LabelStyle.Format = "#.#";
+            chart_all.ChartAreas[0].AxisY.LabelStyle.Format = "#";
+
+            chart_all.ChartAreas[0].AxisX.Title = "Time [s]";
+            chart_all.ChartAreas[0].AxisY.Title = "Droplet diameter [μm]";
+
+            // Setting axis decimals and lable on lower chart
+            chart_all.ChartAreas[1].AxisX.LabelStyle.Format = "#.#";
+            chart_all.ChartAreas[1].AxisY.LabelStyle.Format = "#";
+
+            chart_all.ChartAreas[1].AxisX.Title = "Time [s]";
+            chart_all.ChartAreas[1].AxisY.Title = "Droplet temperature [K]";
+
+        }
+        
+        
+        private void comboBox_chart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_chart.SelectedIndex == 0)
+            {
+                // Clearing charts
+                foreach (var series in chart_all.Series)
+                {
+                    series.Points.Clear();
+                }
+                               
+
+                // Setting Y-axis values on upper chart
+                chart_all.ChartAreas[0].AxisY.Maximum = d_pValues_mum[0] + (d_pValues_mum[0] / 10);
+                chart_all.ChartAreas[0].AxisY.Minimum = d_pValues_mum[solLength - 1] - (d_pValues_mum[solLength - 1] / 10);
+
+                // Setting Y-axis values on lower chart
+                chart_all.ChartAreas[1].AxisY.Maximum = T_inf_i + (T_inf_i / 100);
+                chart_all.ChartAreas[1].AxisY.Minimum = t_dValues[solLength - 1] - (t_dValues[solLength - 1] / 100);
+
+                // Setting axis decimals and lable on upper chart
+                chart_all.ChartAreas[0].AxisX.LabelStyle.Format = "#.#";
+                chart_all.ChartAreas[0].AxisY.LabelStyle.Format = "#";
+
+                chart_all.ChartAreas[0].AxisX.Title = "Time [s]";
+                chart_all.ChartAreas[0].AxisY.Title = "Droplet diameter [μm]";
+
+                // Setting axis decimals and lable on lower chart
+                chart_all.ChartAreas[1].AxisX.LabelStyle.Format = "#.#";
+                chart_all.ChartAreas[1].AxisY.LabelStyle.Format = "#";
+
+                chart_all.ChartAreas[1].AxisX.Title = "Time [s]";
+                chart_all.ChartAreas[1].AxisY.Title = "Droplet temperature [K]";
+                
+                
+                // Populating chart with datapoints 
+                for (int i = 0; i < solLength; i++)
+                {
+
+                    chart_all.Series["Droplet diameter"].Points.AddXY(tValues[i], d_pValues_mum[i]);
+                    chart_all.Series["Droplet temperature"].Points.AddXY(tValues[i], t_dValues[i]);
+                }
+
+
+            }
+            else if (comboBox_chart.SelectedIndex == 1)
+            {
+                // Clearing charts
+                foreach (var series in chart_all.Series)
+                {
+                    series.Points.Clear();
+                }
+                               
+
+                // Setting Y-axis values on upper chart
+                chart_all.ChartAreas[0].AxisY.Maximum = T_inf_i + (T_inf_i / 100);
+                chart_all.ChartAreas[0].AxisY.Minimum = T_infValues[solLength - 1] - (T_infValues[solLength - 1] / 100);
+
+                // Setting Y-axis values on lower chart
+                chart_all.ChartAreas[1].AxisY.Maximum = p_infValues[solLength - 1] + (p_infValues[solLength - 1] / 10);
+                chart_all.ChartAreas[1].AxisY.Minimum = p_inf_i - (p_inf_i / 10);
+                
+                // Setting axis decimals and lable on upper chart
+                chart_all.ChartAreas[0].AxisX.LabelStyle.Format = "#.#";
+                chart_all.ChartAreas[0].AxisY.LabelStyle.Format = "#";
+
+                chart_all.ChartAreas[0].AxisX.Title = "Time [s]";
+                chart_all.ChartAreas[0].AxisY.Title = "Air temperature [K]";
+
+                // Setting axis decimals and lable on lower chart
+                chart_all.ChartAreas[1].AxisX.LabelStyle.Format = "#.#";
+                chart_all.ChartAreas[1].AxisY.LabelStyle.Format = "#";
+
+                chart_all.ChartAreas[1].AxisX.Title = "Time [s]";
+                chart_all.ChartAreas[1].AxisY.Title = "Partial pressure of water [Pa]";
+ 
+                // Populating chart with datapoints 
+                for (int i = 0; i < solLength; i++)
+                {
+
+                    chart_all.Series["Air temperature"].Points.AddXY(tValues[i], T_infValues[i]);
+                    chart_all.Series["Partial pressure of water"].Points.AddXY(tValues[i], p_infValues[i]);
+                }
+             }
+        }
         
         
         
@@ -383,6 +517,8 @@ namespace Droplet_Evaporation_Analyzer
 
             Tooltip8.SetToolTip(this.textBox_tf, "Total timespan evaluated in seconds");
         }
+
+        
 
 
 
