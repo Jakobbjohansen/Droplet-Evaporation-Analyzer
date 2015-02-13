@@ -163,12 +163,24 @@ namespace Droplet_Evaporation_Analyzer
             }
 
             //Claculating evaporation percentage
-            double evaporation = 100
+            double evaporation =    100
                                     - ((4 / 3 * Math.PI
                                     * Math.Pow((d_pValues[solLength - 1] * Math.Pow(10, 6)) / 2, 3))
                                     / (4 / 3 * Math.PI
                                     * Math.Pow((d_p_i * Math.Pow(10, 6)) / 2, 3)) * 100);
 
+            //Calculating relative humidity
+            double relativeHumidity = ( p_infValues[solLength - 1] 
+                                        / (
+                                        (0.7073
+                                        - 2.7036E-2 * (T_infValues[solLength - 1] - 273.15)
+                                        + 4.3609E-3 * Math.Pow(T_infValues[solLength - 1] - 273.15, 2)
+                                        - 4.6626E-5 * Math.Pow(T_infValues[solLength - 1] - 273.15, 3)
+                                        + 1.0347E-6 * Math.Pow(T_infValues[solLength - 1] - 273.15, 4)
+                                        ) * Math.Pow(10, 3)
+                                        )) * 100;
+
+            //phi_inf = (Y[2] / p_s) * 100;
 
             // Data with two decimal points
             double d_p_end = Math.Truncate(d_pValues[solLength - 1] * Math.Pow(10, 8)) / 100;
@@ -176,13 +188,15 @@ namespace Droplet_Evaporation_Analyzer
             double T_inf_end = Math.Truncate(T_infValues[solLength - 1] * 100) / 100;
             double p_inf_end = Math.Truncate(p_infValues[solLength - 1] * 100) / 100;
             double evap_end = Math.Truncate(evaporation * 100) / 100;
-
+            double phi_inf_end = Math.Truncate(relativeHumidity * 100) / 100;  
+            
             // Printing end result
             string d_p_end_str = d_p_end.ToString();
             string t_d_end_str = t_d_end.ToString();
             string T_inf_end_str = T_inf_end.ToString();
             string p_inf_end_str = p_inf_end.ToString();
             string evap_end_str = evap_end.ToString();
+            string phi_inf_end_str = phi_inf_end.ToString();
 
             this.textBox_d_p_end.Text = "";
             this.textBox_d_p_end.Text = d_p_end_str;
@@ -194,6 +208,8 @@ namespace Droplet_Evaporation_Analyzer
             this.textBox_p_inf_end.Text = p_inf_end_str;
             this.textBox_evap_end.Text = "";
             this.textBox_evap_end.Text = evap_end_str;
+            this.textBox_phi_inf_end.Text = "";
+            this.textBox_phi_inf_end.Text = phi_inf_end_str;
 
             //Converting datapoints to input units
 

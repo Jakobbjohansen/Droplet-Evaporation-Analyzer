@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series19 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart_all = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,40 +79,42 @@
             this.textBox_evap_end = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox_chart = new System.Windows.Forms.ComboBox();
+            this.label_phi_inf_end = new System.Windows.Forms.Label();
+            this.textBox_phi_inf_end = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart_all)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // chart_all
             // 
-            chartArea9.Name = "ChartArea1";
-            chartArea10.Name = "ChartArea2";
-            this.chart_all.ChartAreas.Add(chartArea9);
-            this.chart_all.ChartAreas.Add(chartArea10);
-            legend5.Name = "Legend1";
-            this.chart_all.Legends.Add(legend5);
+            chartArea1.Name = "ChartArea1";
+            chartArea2.Name = "ChartArea2";
+            this.chart_all.ChartAreas.Add(chartArea1);
+            this.chart_all.ChartAreas.Add(chartArea2);
+            legend1.Name = "Legend1";
+            this.chart_all.Legends.Add(legend1);
             this.chart_all.Location = new System.Drawing.Point(343, 266);
             this.chart_all.Name = "chart_all";
-            series17.ChartArea = "ChartArea1";
-            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series17.Legend = "Legend1";
-            series17.Name = "Droplet diameter";
-            series18.ChartArea = "ChartArea2";
-            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series18.Legend = "Legend1";
-            series18.Name = "Droplet temperature";
-            series19.ChartArea = "ChartArea1";
-            series19.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series19.Legend = "Legend1";
-            series19.Name = "Air temperature";
-            series20.ChartArea = "ChartArea2";
-            series20.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series20.Legend = "Legend1";
-            series20.Name = "Partial pressure of water";
-            this.chart_all.Series.Add(series17);
-            this.chart_all.Series.Add(series18);
-            this.chart_all.Series.Add(series19);
-            this.chart_all.Series.Add(series20);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Droplet diameter";
+            series2.ChartArea = "ChartArea2";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Droplet temperature";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "Air temperature";
+            series4.ChartArea = "ChartArea2";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "Partial pressure of water";
+            this.chart_all.Series.Add(series1);
+            this.chart_all.Series.Add(series2);
+            this.chart_all.Series.Add(series3);
+            this.chart_all.Series.Add(series4);
             this.chart_all.Size = new System.Drawing.Size(491, 448);
             this.chart_all.TabIndex = 0;
             this.chart_all.Text = "chart1";
@@ -189,7 +191,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -358,7 +360,7 @@
             // 
             // textBox_number_of_data_points
             // 
-            this.textBox_number_of_data_points.Location = new System.Drawing.Point(8, 417);
+            this.textBox_number_of_data_points.Location = new System.Drawing.Point(8, 463);
             this.textBox_number_of_data_points.Name = "textBox_number_of_data_points";
             this.textBox_number_of_data_points.Size = new System.Drawing.Size(100, 20);
             this.textBox_number_of_data_points.TabIndex = 20;
@@ -366,7 +368,7 @@
             // label_number_of_data_points
             // 
             this.label_number_of_data_points.AutoSize = true;
-            this.label_number_of_data_points.Location = new System.Drawing.Point(8, 401);
+            this.label_number_of_data_points.Location = new System.Drawing.Point(8, 447);
             this.label_number_of_data_points.Name = "label_number_of_data_points";
             this.label_number_of_data_points.Size = new System.Drawing.Size(111, 13);
             this.label_number_of_data_points.TabIndex = 21;
@@ -485,11 +487,29 @@
             this.comboBox_chart.Text = "Droplet diameter and droplet temperature";
             this.comboBox_chart.SelectedIndexChanged += new System.EventHandler(this.comboBox_chart_SelectedIndexChanged);
             // 
+            // label_phi_inf_end
+            // 
+            this.label_phi_inf_end.AutoSize = true;
+            this.label_phi_inf_end.Location = new System.Drawing.Point(8, 398);
+            this.label_phi_inf_end.Name = "label_phi_inf_end";
+            this.label_phi_inf_end.Size = new System.Drawing.Size(87, 13);
+            this.label_phi_inf_end.TabIndex = 36;
+            this.label_phi_inf_end.Text = "Relative humidity";
+            // 
+            // textBox_phi_inf_end
+            // 
+            this.textBox_phi_inf_end.Location = new System.Drawing.Point(8, 414);
+            this.textBox_phi_inf_end.Name = "textBox_phi_inf_end";
+            this.textBox_phi_inf_end.Size = new System.Drawing.Size(100, 20);
+            this.textBox_phi_inf_end.TabIndex = 35;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(845, 784);
+            this.Controls.Add(this.label_phi_inf_end);
+            this.Controls.Add(this.textBox_phi_inf_end);
             this.Controls.Add(this.comboBox_chart);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label_evap_end);
@@ -582,6 +602,8 @@
         private System.Windows.Forms.TextBox textBox_evap_end;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox_chart;
+        private System.Windows.Forms.Label label_phi_inf_end;
+        private System.Windows.Forms.TextBox textBox_phi_inf_end;
     }
 }
 
