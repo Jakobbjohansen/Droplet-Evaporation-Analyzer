@@ -81,6 +81,8 @@
             this.comboBox_chart = new System.Windows.Forms.ComboBox();
             this.label_phi_inf_end = new System.Windows.Forms.Label();
             this.textBox_phi_inf_end = new System.Windows.Forms.TextBox();
+            this.button_save = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.chart_all)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -503,11 +505,22 @@
             this.textBox_phi_inf_end.Size = new System.Drawing.Size(100, 20);
             this.textBox_phi_inf_end.TabIndex = 35;
             // 
+            // button_save
+            // 
+            this.button_save.Location = new System.Drawing.Point(13, 518);
+            this.button_save.Name = "button_save";
+            this.button_save.Size = new System.Drawing.Size(75, 23);
+            this.button_save.TabIndex = 37;
+            this.button_save.Text = "Save";
+            this.button_save.UseVisualStyleBackColor = true;
+            this.button_save.Click += new System.EventHandler(this.button_save_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(845, 784);
+            this.Controls.Add(this.button_save);
             this.Controls.Add(this.label_phi_inf_end);
             this.Controls.Add(this.textBox_phi_inf_end);
             this.Controls.Add(this.comboBox_chart);
@@ -604,6 +617,8 @@
         private System.Windows.Forms.ComboBox comboBox_chart;
         private System.Windows.Forms.Label label_phi_inf_end;
         private System.Windows.Forms.TextBox textBox_phi_inf_end;
+        private System.Windows.Forms.Button button_save;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

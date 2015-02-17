@@ -29,6 +29,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -471,6 +472,55 @@ namespace Droplet_Evaporation_Analyzer
 
         }
 
+
+        /****************Save file botton***************/
+
+
+       private void button_save_Click(object sender, EventArgs e)
+        {
+            
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.Filter = "csv files (*.csv)|*.csv|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 1;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter outfile = new StreamWriter(saveFileDialog1.FileName);
+    
+                    using (outfile)
+                        {
+                            string header = "";
+                            header =    "Number;" 
+                                        + "Time;"
+                                        + "Droplet diameter;"
+                                        + "Droplet temperature;"
+                                        + "Partial pressure of water;"
+                                        + "Air temperature";
+
+                            outfile.WriteLine(header);
+                            
+                            string content = "";
+                            for (int i = 0; i < solLength; i++)
+                            {
+
+                                content =  (i + 1).ToString() + ";"   
+                                          + tValues[i].ToString() + ";" 
+                                          + d_pValues[i].ToString() + ";"
+                                          + t_dValues[i].ToString() + ";"
+                                          + p_infValues[i].ToString() + ";"
+                                          + T_infValues[i].ToString() + ";"; 
+                                           
+                                outfile.WriteLine(content);
+                            }
+                       
+                        }
+                    outfile.Close();
+            }
+        }
+
+
         /****************Exit botton*****************/
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -478,6 +528,8 @@ namespace Droplet_Evaporation_Analyzer
             this.Close();
         }
 
+
+        /****************Information on input mouse hover****************/
         private void textBox_d_p_i_MouseHover(object sender, EventArgs e)
         {
             System.Windows.Forms.ToolTip Tooltip1 = new System.Windows.Forms.ToolTip();
@@ -534,11 +586,16 @@ namespace Droplet_Evaporation_Analyzer
             Tooltip8.SetToolTip(this.textBox_tf, "Total timespan evaluated in seconds");
         }
 
+
+        /**********************Show About page**********************/
+
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             About about = new About();
             about.ShowDialog();
         }
+
+
 
         
 
