@@ -47,6 +47,7 @@ namespace Droplet_Evaporation_Analyzer
         /******************Declaring variables**************/
 
         private int solLength;
+        private int droplet_evaporated;
         private double[] tValues = new double[1024];
         private double[] d_pValues = new double[1024];
         private double[] t_dValues = new double[1024];
@@ -129,151 +130,123 @@ namespace Droplet_Evaporation_Analyzer
             {
                 sol = rungeKutta.Solve(y0, x0, delta_t, xf);
 
+                droplet_evaporated = 0;
             }
             catch
             {
+                //Error lable
                 this.label_Error.Text = "Error: Droplet evaporated";
+
+                droplet_evaporated = 1;
+
             }
 
-            /***************Printing number of datapoints**********/
-
-            solLength = sol.GetLength(0);
-
-            string input1 = solLength.ToString();
-            this.textBox_number_of_data_points.Text = "";
-            this.textBox_number_of_data_points.Text = input1;
-
-            
-            /*********************Converting data*******************/
-
-            //Creating arrays to store datapoints
-            tValues = new double[solLength];
-            d_pValues = new double[solLength];
-            t_dValues = new double[solLength];
-            p_infValues = new double[solLength];
-            T_infValues = new double[solLength];
-
-            //Storing datapoints in arrays
-            for (int i = 0; i < solLength; i++)
-            {
-                tValues[i] = sol[i, 0];
-                d_pValues[i] = sol[i, 1];
-                t_dValues[i] = sol[i, 2];
-                p_infValues[i] = sol[i, 3];
-                T_infValues[i] = sol[i, 4];
-            }
-
-            //Claculating evaporation percentage
-            double evaporation =    100
-                                    - ((4 / 3 * Math.PI
-                                    * Math.Pow((d_pValues[solLength - 1] * Math.Pow(10, 6)) / 2, 3))
-                                    / (4 / 3 * Math.PI
-                                    * Math.Pow((d_p_i * Math.Pow(10, 6)) / 2, 3)) * 100);
-
-            //Calculating relative humidity
-            double relativeHumidity = ( p_infValues[solLength - 1] 
-                                        / (
-                                        (0.7073
-                                        - 2.7036E-2 * (T_infValues[solLength - 1] - 273.15)
-                                        + 4.3609E-3 * Math.Pow(T_infValues[solLength - 1] - 273.15, 2)
-                                        - 4.6626E-5 * Math.Pow(T_infValues[solLength - 1] - 273.15, 3)
-                                        + 1.0347E-6 * Math.Pow(T_infValues[solLength - 1] - 273.15, 4)
-                                        ) * Math.Pow(10, 3)
-                                        )) * 100;
-
-            //phi_inf = (Y[2] / p_s) * 100;
-
-            // Data with two decimal points
-            double d_p_end = Math.Truncate(d_pValues[solLength - 1] * Math.Pow(10, 8)) / 100;
-            double t_d_end = Math.Truncate(t_dValues[solLength - 1] * 100) / 100;
-            double T_inf_end = Math.Truncate(T_infValues[solLength - 1] * 100) / 100;
-            double p_inf_end = Math.Truncate(p_infValues[solLength - 1] * 100) / 100;
-            double evap_end = Math.Truncate(evaporation * 100) / 100;
-            double phi_inf_end = Math.Truncate(relativeHumidity * 100) / 100;  
-            
-            // Printing end result
-            string d_p_end_str = d_p_end.ToString();
-            string t_d_end_str = t_d_end.ToString();
-            string T_inf_end_str = T_inf_end.ToString();
-            string p_inf_end_str = p_inf_end.ToString();
-            string evap_end_str = evap_end.ToString();
-            string phi_inf_end_str = phi_inf_end.ToString();
-
-            this.textBox_d_p_end.Text = "";
-            this.textBox_d_p_end.Text = d_p_end_str;
-            this.textBox_T_d_end.Text = "";
-            this.textBox_T_d_end.Text = t_d_end_str;
-            this.textBox_T_inf_end.Text = "";
-            this.textBox_T_inf_end.Text = T_inf_end_str;
-            this.textBox_p_inf_end.Text = "";
-            this.textBox_p_inf_end.Text = p_inf_end_str;
-            this.textBox_evap_end.Text = "";
-            this.textBox_evap_end.Text = evap_end_str;
-            this.textBox_phi_inf_end.Text = "";
-            this.textBox_phi_inf_end.Text = phi_inf_end_str;
-
-            //Converting datapoints to input units
-
-            d_pValues_mum = new double[solLength];
-            multi = 1000000;
-
-
-            for (int i = 0; i < solLength; i++)
+            if (droplet_evaporated == 0)
             {
 
-                d_pValues_mum[i] = d_pValues[i] * multi;
-            }
+                /***************Printing number of datapoints**********/
 
-            // Clearing charts
-            foreach (var series in chart_all.Series)
-            {
-                series.Points.Clear();
-            }
+                solLength = sol.GetLength(0);
+
+                string input1 = solLength.ToString();
+                this.textBox_number_of_data_points.Text = "";
+                this.textBox_number_of_data_points.Text = input1;
 
 
-            // Populating chart with datapoints 
-            for (int i = 0; i < solLength; i++)
-            {
+                /*********************Converting data*******************/
 
-                chart_all.Series["Droplet diameter"].Points.AddXY(tValues[i], d_pValues_mum[i]);
-                chart_all.Series["Droplet temperature"].Points.AddXY(tValues[i], t_dValues[i]);
-            }
+                //Creating arrays to store datapoints
+                tValues = new double[solLength];
+                d_pValues = new double[solLength];
+                t_dValues = new double[solLength];
+                p_infValues = new double[solLength];
+                T_infValues = new double[solLength];
 
-            // Setting Y-axis values on upper chart
-            chart_all.ChartAreas[0].AxisY.Maximum = d_pValues_mum[0] + (d_pValues_mum[0] / 10);
-            chart_all.ChartAreas[0].AxisY.Minimum = d_pValues_mum[solLength - 1] - (d_pValues_mum[solLength - 1] / 10);
+                //Storing datapoints in arrays
+                for (int i = 0; i < solLength; i++)
+                {
+                    tValues[i] = sol[i, 0];
+                    d_pValues[i] = sol[i, 1];
+                    t_dValues[i] = sol[i, 2];
+                    p_infValues[i] = sol[i, 3];
+                    T_infValues[i] = sol[i, 4];
+                }
 
-            // Setting Y-axis values on lower chart
-            chart_all.ChartAreas[1].AxisY.Maximum = T_inf_i + (T_inf_i / 100);
-            chart_all.ChartAreas[1].AxisY.Minimum = t_dValues[solLength - 1] - (t_dValues[solLength - 1] / 100);
+                //Claculating evaporation percentage
+                double evaporation = 100
+                                        - ((4 / 3 * Math.PI
+                                        * Math.Pow((d_pValues[solLength - 1] * Math.Pow(10, 6)) / 2, 3))
+                                        / (4 / 3 * Math.PI
+                                        * Math.Pow((d_p_i * Math.Pow(10, 6)) / 2, 3)) * 100);
 
-            // Setting axis decimals and lable on upper chart
-            chart_all.ChartAreas[0].AxisX.LabelStyle.Format = "#.#";
-            chart_all.ChartAreas[0].AxisY.LabelStyle.Format = "#";
+                //Calculating relative humidity
+                double relativeHumidity = (p_infValues[solLength - 1]
+                                            / (
+                                            (0.7073
+                                            - 2.7036E-2 * (T_infValues[solLength - 1] - 273.15)
+                                            + 4.3609E-3 * Math.Pow(T_infValues[solLength - 1] - 273.15, 2)
+                                            - 4.6626E-5 * Math.Pow(T_infValues[solLength - 1] - 273.15, 3)
+                                            + 1.0347E-6 * Math.Pow(T_infValues[solLength - 1] - 273.15, 4)
+                                            ) * Math.Pow(10, 3)
+                                            )) * 100;
 
-            chart_all.ChartAreas[0].AxisX.Title = "Time [s]";
-            chart_all.ChartAreas[0].AxisY.Title = "Droplet diameter [μm]";
+                //phi_inf = (Y[2] / p_s) * 100;
 
-            // Setting axis decimals and lable on lower chart
-            chart_all.ChartAreas[1].AxisX.LabelStyle.Format = "#.#";
-            chart_all.ChartAreas[1].AxisY.LabelStyle.Format = "#";
+                // Data with two decimal points
+                double d_p_end = Math.Truncate(d_pValues[solLength - 1] * Math.Pow(10, 8)) / 100;
+                double t_d_end = Math.Truncate(t_dValues[solLength - 1] * 100) / 100;
+                double T_inf_end = Math.Truncate(T_infValues[solLength - 1] * 100) / 100;
+                double p_inf_end = Math.Truncate(p_infValues[solLength - 1] * 100) / 100;
+                double evap_end = Math.Truncate(evaporation * 100) / 100;
+                double phi_inf_end = Math.Truncate(relativeHumidity * 100) / 100;
 
-            chart_all.ChartAreas[1].AxisX.Title = "Time [s]";
-            chart_all.ChartAreas[1].AxisY.Title = "Droplet temperature [K]";
+                // Printing end result
+                string d_p_end_str = d_p_end.ToString();
+                string t_d_end_str = t_d_end.ToString();
+                string T_inf_end_str = T_inf_end.ToString();
+                string p_inf_end_str = p_inf_end.ToString();
+                string evap_end_str = evap_end.ToString();
+                string phi_inf_end_str = phi_inf_end.ToString();
 
-        }
-        
-        
-        private void comboBox_chart_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBox_chart.SelectedIndex == 0)
-            {
+                this.textBox_d_p_end.Text = "";
+                this.textBox_d_p_end.Text = d_p_end_str;
+                this.textBox_T_d_end.Text = "";
+                this.textBox_T_d_end.Text = t_d_end_str;
+                this.textBox_T_inf_end.Text = "";
+                this.textBox_T_inf_end.Text = T_inf_end_str;
+                this.textBox_p_inf_end.Text = "";
+                this.textBox_p_inf_end.Text = p_inf_end_str;
+                this.textBox_evap_end.Text = "";
+                this.textBox_evap_end.Text = evap_end_str;
+                this.textBox_phi_inf_end.Text = "";
+                this.textBox_phi_inf_end.Text = phi_inf_end_str;
+
+                //Converting datapoints to input units
+
+                d_pValues_mum = new double[solLength];
+                multi = 1000000;
+
+
+                for (int i = 0; i < solLength; i++)
+                {
+
+                    d_pValues_mum[i] = d_pValues[i] * multi;
+                }
+
                 // Clearing charts
                 foreach (var series in chart_all.Series)
                 {
                     series.Points.Clear();
                 }
-                               
+
+
+                // Populating chart with datapoints 
+                for (int i = 0; i < solLength; i++)
+                {
+
+                    chart_all.Series["Droplet diameter"].Points.AddXY(tValues[i], d_pValues_mum[i]);
+                    chart_all.Series["Droplet temperature"].Points.AddXY(tValues[i], t_dValues[i]);
+                }
 
                 // Setting Y-axis values on upper chart
                 chart_all.ChartAreas[0].AxisY.Maximum = d_pValues_mum[0] + (d_pValues_mum[0] / 10);
@@ -296,55 +269,139 @@ namespace Droplet_Evaporation_Analyzer
 
                 chart_all.ChartAreas[1].AxisX.Title = "Time [s]";
                 chart_all.ChartAreas[1].AxisY.Title = "Droplet temperature [K]";
-                
-                
-                // Populating chart with datapoints 
-                for (int i = 0; i < solLength; i++)
-                {
-
-                    chart_all.Series["Droplet diameter"].Points.AddXY(tValues[i], d_pValues_mum[i]);
-                    chart_all.Series["Droplet temperature"].Points.AddXY(tValues[i], t_dValues[i]);
-                }
-
-
             }
-            else if (comboBox_chart.SelectedIndex == 1)
+            
+            else
             {
+                //Printing N/A in the result boxes
+                this.textBox_d_p_end.Text = "";
+                this.textBox_d_p_end.Text = "N/A";
+                this.textBox_T_d_end.Text = "";
+                this.textBox_T_d_end.Text = "N/A";
+                this.textBox_T_inf_end.Text = "";
+                this.textBox_T_inf_end.Text = "N/A";
+                this.textBox_p_inf_end.Text = "";
+                this.textBox_p_inf_end.Text = "N/A";
+                this.textBox_evap_end.Text = "";
+                this.textBox_evap_end.Text = "N/A";
+                this.textBox_phi_inf_end.Text = "";
+                this.textBox_phi_inf_end.Text = "N/A";
+                this.textBox_number_of_data_points.Text = "";
+                this.textBox_number_of_data_points.Text = "N/A";
+                
                 // Clearing charts
                 foreach (var series in chart_all.Series)
                 {
                     series.Points.Clear();
                 }
-                               
-
-                // Setting Y-axis values on upper chart
-                chart_all.ChartAreas[0].AxisY.Maximum = T_inf_i + (T_inf_i / 100);
-                chart_all.ChartAreas[0].AxisY.Minimum = T_infValues[solLength - 1] - (T_infValues[solLength - 1] / 100);
-
-                // Setting Y-axis values on lower chart
-                chart_all.ChartAreas[1].AxisY.Maximum = p_infValues[solLength - 1] + (p_infValues[solLength - 1] / 10);
-                chart_all.ChartAreas[1].AxisY.Minimum = p_inf_i - (p_inf_i / 10);
-                
-                // Setting axis decimals and lable on upper chart
-                chart_all.ChartAreas[0].AxisX.LabelStyle.Format = "#.#";
-                chart_all.ChartAreas[0].AxisY.LabelStyle.Format = "#";
-
-                chart_all.ChartAreas[0].AxisX.Title = "Time [s]";
-                chart_all.ChartAreas[0].AxisY.Title = "Air temperature [K]";
-
-                // Setting axis decimals and lable on lower chart
-                chart_all.ChartAreas[1].AxisX.LabelStyle.Format = "#.#";
-                chart_all.ChartAreas[1].AxisY.LabelStyle.Format = "#";
-
-                chart_all.ChartAreas[1].AxisX.Title = "Time [s]";
-                chart_all.ChartAreas[1].AxisY.Title = "Partial pressure of water [Pa]";
- 
-                // Populating chart with datapoints 
-                for (int i = 0; i < solLength; i++)
+            }
+        }
+        
+        
+        private void comboBox_chart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_chart.SelectedIndex == 0)
+            {
+                if (droplet_evaporated == 0)
                 {
+                    // Clearing charts
+                    foreach (var series in chart_all.Series)
+                    {
+                        series.Points.Clear();
+                    }
 
-                    chart_all.Series["Air temperature"].Points.AddXY(tValues[i], T_infValues[i]);
-                    chart_all.Series["Partial pressure of water"].Points.AddXY(tValues[i], p_infValues[i]);
+
+                    // Setting Y-axis values on upper chart
+                    chart_all.ChartAreas[0].AxisY.Maximum = d_pValues_mum[0] + (d_pValues_mum[0] / 10);
+                    chart_all.ChartAreas[0].AxisY.Minimum = d_pValues_mum[solLength - 1] - (d_pValues_mum[solLength - 1] / 10);
+
+                    // Setting Y-axis values on lower chart
+                    chart_all.ChartAreas[1].AxisY.Maximum = T_inf_i + (T_inf_i / 100);
+                    chart_all.ChartAreas[1].AxisY.Minimum = t_dValues[solLength - 1] - (t_dValues[solLength - 1] / 100);
+
+                    // Setting axis decimals and lable on upper chart
+                    chart_all.ChartAreas[0].AxisX.LabelStyle.Format = "#.#";
+                    chart_all.ChartAreas[0].AxisY.LabelStyle.Format = "#";
+
+                    chart_all.ChartAreas[0].AxisX.Title = "Time [s]";
+                    chart_all.ChartAreas[0].AxisY.Title = "Droplet diameter [μm]";
+
+                    // Setting axis decimals and lable on lower chart
+                    chart_all.ChartAreas[1].AxisX.LabelStyle.Format = "#.#";
+                    chart_all.ChartAreas[1].AxisY.LabelStyle.Format = "#";
+
+                    chart_all.ChartAreas[1].AxisX.Title = "Time [s]";
+                    chart_all.ChartAreas[1].AxisY.Title = "Droplet temperature [K]";
+
+
+                    // Populating chart with datapoints 
+                    for (int i = 0; i < solLength; i++)
+                    {
+
+                        chart_all.Series["Droplet diameter"].Points.AddXY(tValues[i], d_pValues_mum[i]);
+                        chart_all.Series["Droplet temperature"].Points.AddXY(tValues[i], t_dValues[i]);
+                    }
+                }
+                
+                else 
+                {
+                    // Clearing charts
+                    foreach (var series in chart_all.Series)
+                    {
+                        series.Points.Clear();
+                    }
+                }
+
+            }
+            else if (comboBox_chart.SelectedIndex == 1)
+            {
+                if (droplet_evaporated == 0)
+                {
+                    // Clearing charts
+                    foreach (var series in chart_all.Series)
+                    {
+                        series.Points.Clear();
+                    }
+
+
+                    // Setting Y-axis values on upper chart
+                    chart_all.ChartAreas[0].AxisY.Maximum = T_inf_i + (T_inf_i / 100);
+                    chart_all.ChartAreas[0].AxisY.Minimum = T_infValues[solLength - 1] - (T_infValues[solLength - 1] / 100);
+
+                    // Setting Y-axis values on lower chart
+                    chart_all.ChartAreas[1].AxisY.Maximum = p_infValues[solLength - 1] + (p_infValues[solLength - 1] / 10);
+                    chart_all.ChartAreas[1].AxisY.Minimum = p_inf_i - (p_inf_i / 10);
+
+                    // Setting axis decimals and lable on upper chart
+                    chart_all.ChartAreas[0].AxisX.LabelStyle.Format = "#.#";
+                    chart_all.ChartAreas[0].AxisY.LabelStyle.Format = "#";
+
+                    chart_all.ChartAreas[0].AxisX.Title = "Time [s]";
+                    chart_all.ChartAreas[0].AxisY.Title = "Air temperature [K]";
+
+                    // Setting axis decimals and lable on lower chart
+                    chart_all.ChartAreas[1].AxisX.LabelStyle.Format = "#.#";
+                    chart_all.ChartAreas[1].AxisY.LabelStyle.Format = "#";
+
+                    chart_all.ChartAreas[1].AxisX.Title = "Time [s]";
+                    chart_all.ChartAreas[1].AxisY.Title = "Partial pressure of water [Pa]";
+
+                    // Populating chart with datapoints 
+                    for (int i = 0; i < solLength; i++)
+                    {
+
+                        chart_all.Series["Air temperature"].Points.AddXY(tValues[i], T_infValues[i]);
+                        chart_all.Series["Partial pressure of water"].Points.AddXY(tValues[i], p_infValues[i]);
+                    }
+                }
+
+                else
+                {
+                    // Clearing charts
+                    foreach (var series in chart_all.Series)
+                    {
+                        series.Points.Clear();
+                    }
                 }
              }
         }
