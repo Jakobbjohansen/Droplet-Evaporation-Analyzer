@@ -130,6 +130,7 @@ namespace Droplet_Evaporation_Analyzer
             {
                 sol = rungeKutta.Solve(y0, x0, delta_t, xf);
 
+                //Solution identifier which is 0 if the droplets do not fully evaporate 
                 droplet_evaporated = 0;
             }
             catch
@@ -137,6 +138,7 @@ namespace Droplet_Evaporation_Analyzer
                 //Error lable
                 this.label_Error.Text = "Error: Droplet evaporated";
 
+                //Solution identifier which is 1 if the droplets do fully evaporate 
                 droplet_evaporated = 1;
 
             }
