@@ -422,14 +422,14 @@ namespace Droplet_Evaporation_Analyzer
 
             /************Constants******************************/
            
-            double M_w = 18.015;        //The molar mass of water [kg/kmol]
-            double R_u = 8314;          //The universal gas constant [J/(kmol*K)]:
-            double sigma_w = 0.072;     //Surface tention of water [N/m]:
-            double lambda = 0.7E-7;     //The mean free path of the surrounding air [m]
-            double alpha_h = 0.7;       //The thermal accmodation coefficient (1999, Raymond A. Shaw et al)
-            double alpha_m = 0.1;       //The mass accmodation coefficient (undetermined between three orders of 
-                                        //magnitude in the literature (2004, P. Davidovits)
-            double C_p_w = 4.183;       //Specific heat capacity of water (293.15 K) [kJ/(kg*K]:
+            double M_w = 18.015;        // The molar mass of water [kg/kmol]
+            double R_u = 8314;          // The universal gas constant [J/(kmol*K)]:
+            double sigma_w = 0.072;     // Surface tention of water [N/m]:
+            double lambda = 0.7E-7;     // The mean free path of the surrounding air [m]
+            double alpha_h = 0.7;       // The thermal accmodation coefficient (1999, Raymond A. Shaw et al)
+            double alpha_m = 0.1;       // The mass accmodation coefficient (undetermined between three orders of 
+                                        // magnitude in the literature (2004, P. Davidovits)
+            double C_p_w = 4.183;       // Specific heat capacity of water (293.15 K) [kJ/(kg*K]:
             double h_w = 2257;          // The latent heat of evaporation of water [kJ/kg]
             double p_0 = 101325;        // The ambiant pressure [Pa]
             double M_a = 28.97;         // The molar mass of dry air [kg/kmol]
