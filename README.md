@@ -1,2 +1,2 @@
 # Droplet-Evaporation-Analyzer
-Test
+This program enables evaluation of droplet evaporation rates in air.
